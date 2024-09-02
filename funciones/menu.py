@@ -15,7 +15,7 @@ color_pass = Fore.LIGHTGREEN_EX + Style.BRIGHT
 import json
 try:
     inventario_json = open('inventario.json', 'r')
-    prenda = json.load(inventario_json)
+    inventario = json.load(inventario_json)
     inventario_json.close()
 except:
     inventario = []
