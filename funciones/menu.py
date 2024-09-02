@@ -39,4 +39,4 @@ def menu():
                 print(color_menu + 'Que tenga Feliz Dia..........')
                 return
             case 'a' | 'A':
-                agregar()
+                agregar(inventario, color_menu)
