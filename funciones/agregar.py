@@ -1,11 +1,11 @@
 import json
-def agregar(inv):
-    cod = int(input( 'Ingrese Codigo.........................: '))
-    desc = input( 'Tipo de Prenda............................: ')
-    talla = input( 'Ingrese Talla............................: ')
-    deco = input( 'Ingrese Tematica..........................: ')
-    entrega = input( 'Tipo de Entrega, [D/Delivery, R/Retiro]: ')
-    precio = float(input( 'Precio............................: '))
+def agregar(inv, color_o):
+    cod = int(input(color_o + 'Ingrese Codigo.........................: '))
+    desc = input(color_o + 'Tipo de Prenda............................: ')
+    talla = input(color_o + 'Ingrese Talla............................: ')
+    deco = input(color_o + 'Ingrese Tematica..........................: ')
+    entrega = input(color_o + 'Tipo de Entrega, [D/Delivery, R/Retiro]: ')
+    precio = float(input(color_o + 'Precio............................: '))
 
     prenda = {
         'codigo': cod,
