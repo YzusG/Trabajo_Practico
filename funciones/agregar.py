@@ -11,7 +11,6 @@ def agregar(inv, color_o):
         'descripcion': desc,
         'talla': talla,
         'deco': deco,
-        'entrega': entrega,
         'precio': precio
     }
     inv.append(prenda)
