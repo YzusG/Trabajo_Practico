@@ -28,6 +28,8 @@ except:
 # -------------------------------------------------------
 def menu():
     while True:
+        print(color_menu + 'Bienvenido'.center(50,'*'))
+        print(color_menu + 'Club de Fans'.center(50,'*'))
         print(color_menu + '[A] Alta de Producto')
         print(color_menu + '[B] Baja de Producto')
         print(color_menu + '[C] Consulta de Producto')
@@ -42,4 +44,4 @@ def menu():
             case 'a' | 'A':
                 agregar(inventario, color_op)
             case 'C' | 'c':
-                consultar(inventario, color_menu)
+                consultar(inventario, color_menu, color_op)
