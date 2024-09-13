@@ -7,11 +7,12 @@ def agregar(inv, color_o):
     precio = float(input(color_o + 'Precio............................: '))
 
     prenda = {
-        'codigo':cod,
-        'descripcion':desc,
-        'talla':talla,
-        'deco':deco,
-        'precio':precio
+        'codigo': cod,
+        'descripcion': desc,
+        'talla': talla,
+        'deco': deco,
+        'entrega': entrega,
+        'precio': precio
     }
     inv.append(prenda)
     stock = open('inventario.json','w')
