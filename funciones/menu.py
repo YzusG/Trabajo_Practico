@@ -3,6 +3,7 @@
 # -------------------------------------------------------
 from funciones.agregar import agregar
 from funciones.consultar import consultar
+from funciones.baja import baja
 from colorama import init, Fore, Back, Style
 init(autoreset=True)
 color_menu = Fore.LIGHTMAGENTA_EX + Style.BRIGHT
@@ -45,3 +46,5 @@ def menu():
                 agregar(inventario, color_op)
             case 'C' | 'c':
                 consultar(inventario, color_menu, color_op)
+            case 'B' | 'b':
+                baja(inventario, color_menu, color_op)
