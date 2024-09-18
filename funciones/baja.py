@@ -11,6 +11,6 @@ def baja(inv, color_m, color_o):
             print(color_m + '|', end="")
             print(color_m + f"Precio................................: {prenda['precio']}\t |")
         break
-    op = input(color_o + '¿Desea darle de baja al producto....?(S/N):')
-    if op == 'S' | op == 's':
+    op = input(color_o + '¿Desea darle de baja al producto....?(S/N):').capitalize()
+    if op == 'S':
         ...

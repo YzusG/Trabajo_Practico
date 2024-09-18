@@ -1,6 +1,6 @@
 '''
 Trabajo para Practicar
-Prendas Personalizadas Paola's
+Club de Fans
 
 Prenda:
     Codigo: Int

@@ -1,0 +1,16 @@
+[
+  {
+    "codigo": 100,
+    "descripcion": "Franela",
+    "talla": "S",
+    "deco": "Inuyasha",
+    "precio": 50.0
+  },
+  {
+    "codigo": 120,
+    "descripcion": "Pantalon",
+    "talla": "32",
+    "deco": "Inuyasha",
+    "precio": 75.0
+  }
+]
