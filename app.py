@@ -2,11 +2,12 @@
 Trabajo para Practicar
 Club de Fans
 
-Prenda:
+Articulo:
     Codigo: Int
-    Talla: Texto
+    Descripcion: Text
+    Tamaño: Texto
     Decoracion: Texto
-    Entrega: texto
+    Cantidad: int
     Precio: Float
 '''
 
