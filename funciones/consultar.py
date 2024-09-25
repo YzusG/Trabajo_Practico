@@ -10,5 +10,4 @@ def consultar(inv, color_m, color_o):
             print(color_m + f"Tematica..............................: {articulo['deco']:<15}|")
             print(color_m + f"Cantidad..............................: {articulo['cant']:>10.0f}\t |")
             print(color_m + f"Precio................................: {articulo['precio']:>10.2f}\t |")
-        break
     print(color_m + '='*50)
