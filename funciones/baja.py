@@ -1,3 +1,4 @@
+import json
 from funciones.validar import validar
 
 def baja(inv, color_m, color_o, color_e):
@@ -29,6 +30,9 @@ def baja(inv, color_m, color_o, color_e):
             '''
             for indice, articulo in enumerate(inv):
                  if cod == articulo['codigo']:
-                      del inv[indice]
+                         del inv[indice]
+                         stock_nuevo = open('inventario.json', 'w')
+                         json.dump(inv, stock_nuevo)
+                         stock_nuevo.close()
     else:
          print(color_m + 'Volviendo al menu principal..............................')

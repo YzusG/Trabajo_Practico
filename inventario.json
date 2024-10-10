@@ -1,18 +1,1 @@
-[
-  {
-    "codigo": 100,
-    "descripcion": "Franela",
-    "tam": "S",
-    "deco": "Inuyasga",
-    "cant": 40,
-    "precio": 10.0
-  },
-  {
-    "codigo": 110,
-    "descripcion": "Taza",
-    "tam": "150 ml",
-    "deco": "Italia",
-    "cant": 50,
-    "precio": 6.0
-  }
-]
+[{"codigo": 100, "descripcion": "Franela", "tam": "S", "deco": "Inuyasga", "cant": 40, "precio": 10.0}]
