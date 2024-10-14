@@ -107,10 +107,25 @@ def menu_cliente(inv):
         pedidos_json.close()
         continuar = input(color_op + 'Desea Agregar algo mas a su pedido?(S/N)..........: ').capitalize()
         if continuar == 'N':
+            for pedido in pedidos:
+                ...
             for indice, articulo in enumerate(inventario):
-                if cod == articulo['cod']:
-                    cant_articulo = articulo['cant']- cant
-                    ...
+                if cod == articulo['codigo']:
+                    cant_actual = articulo['cant']
+                    del inventario[indice]
+            cant_pedido = pedido['cant']
+            cant_restante = cant_actual - cant_pedido
+            articulo={
+                'codigo': cod,
+                'descripcion': descripcion,
+                'tam': tam,
+                'cant': cant_restante,
+                'precio': precio 
+            }
+            inventario.append(articulo)
+            inventario_json = open('inventario.json','w')
+            json.dump(inventario,inventario_json)
+            inventario_json.close()
             print(color_pass + 'Ticket de compra'.center(58,'*'))
             for pedido in pedidos:
                 print(color_pass + f"{pedido['descripcion']:<20}",end="")
