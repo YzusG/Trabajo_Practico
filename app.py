@@ -12,8 +12,8 @@ Articulo:
 '''
 
 # Importaciones
-from funciones.menu import menu
+from funciones.menu import menu_principal
 
 
 # Programa Principal
-menu()
+menu_principal()

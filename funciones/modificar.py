@@ -8,40 +8,54 @@ def modificar(inv,color_m,color_o,color_e,color_p):
             print(color_e + 'El articulo no existe................................')
         else:
             break
-    for articulo in inv:
+    for indice, articulo in enumerate(inv):
         if cod == articulo['codigo']:
             print(color_p + f"Descripcion...........................: {articulo['descripcion']:<20} |")
             print(color_p + f"Tamaño................................: {articulo['tam']:<10}\t|")
-            print(color_p + f"Tematica..............................: {articulo['deco']:<15}|")
             print(color_p + f"Cantidad..............................: {articulo['cant']:>10.0f}\t |")
             print(color_p + f"Precio................................: {articulo['precio']:>10.2f}\t |")
             separar(color_m)
 
             descripcion_vieja=articulo['descripcion']
             tamaño_viejo=articulo['tam']
-            decoracion_vieja=articulo['deco']
             cantidad_vieja=articulo['cant']
             precio_viejo=articulo['precio']
 
             descripcion_nueva = input(color_o + 'Descripcion...............................: ')
             tamaño_nuevo = input(color_o + 'Tamaño...................................: ')
-            decoracion_nueva = input(color_o + 'Tematica..................................: ')
             cantidad_nueva = (input(color_o + 'Cantidad..................................: '))
             precio_nuevo = input(color_o + 'Precio............................: ')
 
             if len(descripcion_nueva) ==0:
-                articulo['descripcion'] = descripcion_vieja
+                descripcion= descripcion_vieja
+            else:
+                descripcion = descripcion_nueva
             if len(tamaño_nuevo) == 0:
-                articulo['tam'] = tamaño_viejo
-            if len(decoracion_nueva) == 0:
-                articulo['deco'] = decoracion_vieja
+                tam = tamaño_viejo
+            else:
+                tam = tamaño_nuevo
             if len(cantidad_nueva) == 0:
-                articulo['cant'] = cantidad_vieja
+                cantidad_vieja = int(cantidad_vieja)
+                cant = cantidad_vieja
             else:
                 cantidad_nueva = int(cantidad_nueva)
-                articulo['cant'] = cantidad_nueva
+                cant = cantidad_nueva
             if len(precio_nuevo) == 0:
-                articulo['precio'] = precio_viejo
+                precio_viejo = int(precio_viejo)
+                precio = precio_viejo
             else:
                 precio_nuevo = float(precio_nuevo)
-                articulo['precio'] = precio_nuevo
+                precio = precio_nuevo
+
+            articulo_nuevo = {
+                'codigo' :cod,
+                'descripcion': descripcion,
+                'tam': tam,
+                'cant': cant,
+                'precio': precio
+            }
+            del inv[indice]
+            inv.append(articulo_nuevo)
+            stock_nuevo = open('inventario.json','w')
+            json.dump(inv,stock_nuevo)
+            stock_nuevo.close()
