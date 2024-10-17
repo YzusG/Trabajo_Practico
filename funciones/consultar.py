@@ -3,7 +3,7 @@ from funciones.validar import validar
 def consultar(inv, color_m, color_o, color_e,color_p):
     while True:
         cod = int(input(color_o + 'Ingrese el Codigo....................: '))
-        if validar(cod,inv,color_e) == False:
+        if validar(cod,inv) == False:
             print(color_e + 'El producto no existe.......................')
             print(color_e + 'Ingrese nuevo codigo........................')
         else:

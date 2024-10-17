@@ -53,11 +53,11 @@ def menu():
                 print(color_pass + 'Volviendo al menu principal..........')
                 break
             case 'a' | 'A':
-                agregar(inventario, color_op, color_error)
+                agregar(inv=inventario, color_o=color_op, color_e=color_error)
             case 'C' | 'c':
-                consultar(inventario, color_menu, color_op,color_error, color_pass)
+                consultar(inv=inventario, color_m=color_menu, color_o=color_op,color_e=color_error, color_p=color_pass)
             case 'B' | 'b':
-                baja(inventario, color_menu, color_op, color_error)
+                baja(inv=inventario, color_m=color_menu, color_o=color_op, color_e=color_error)
             case 'l' | 'L':
                 listado(inv=inventario,color_p= color_pass,color_m=color_menu)
             case 'm' | 'M':
@@ -75,6 +75,9 @@ def menu_cliente(inv):
         print(color_menu + 'Por Favor ingrese los datos de su pedido...........')
         print()
         print(color_menu + 'Que Articulo desea comprar?')
+        for articulo in inventario:
+            print(color_menu + f"{articulo['codigo']} -",end="")
+            print(color_menu + f'{articulo['descripcion']}')
         while True:
             cod = int(input(color_op + 'Ingrese el codigo del articulo............: '))
             if validar(cod,inv) == False:
@@ -113,9 +116,12 @@ def menu_cliente(inv):
                 for indice, articulo in enumerate(inventario):
                     if articulo['codigo'] == codigo_pedido:
                         codigo= articulo['codigo']
+                        descripcion = articulo['descripcion']
+                        tam = articulo['tam']
+                        precio = articulo['precio']
                         cant_actual = articulo['cant']
-                        cant_restante = cant_actual - cant_pedido
                         del inventario[indice]
+                cant_restante = cant_actual - cant_pedido
                 articulo={
                     'codigo': codigo,
                     'descripcion': descripcion,
