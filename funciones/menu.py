@@ -38,8 +38,8 @@ except:
 # -------------------------------------------------------
 def menu():
     while True:
-        print(color_menu + 'Bienvenido'.center(58,'*'))
-        print(color_menu + 'Operaciones Administrativas'.center(58,'*'))
+        print(color_menu + 'Bienvenido'.center(51,'*'))
+        print(color_menu + 'Operaciones Administrativas'.center(51,'*'))
         print(color_menu + '[A] Alta de Producto')
         print(color_menu + '[B] Baja de Producto')
         print(color_menu + '[C] Consulta de Producto')
@@ -48,8 +48,10 @@ def menu():
         print(color_menu + '[S] Regresar al Menu Principal')
         separar(color_menu)
         op = input(color_op + 'Ingrese su opcion: ')
+        separar(color_menu)
         match op:
             case 's'| 'S':
+                separar(color_menu)
                 print(color_pass + 'Volviendo al menu principal..........')
                 break
             case 'a' | 'A':
@@ -57,7 +59,7 @@ def menu():
             case 'C' | 'c':
                 consultar(inv=inventario, color_m=color_menu, color_o=color_op,color_e=color_error, color_p=color_pass)
             case 'B' | 'b':
-                baja(inv=inventario, color_m=color_menu, color_o=color_op, color_e=color_error)
+                baja(inv=inventario, color_m=color_menu, color_o=color_op, color_e=color_error,color_p=color_pass)
             case 'l' | 'L':
                 listado(inv=inventario,color_p= color_pass,color_m=color_menu)
             case 'm' | 'M':
@@ -71,7 +73,7 @@ def menu_cliente(inv):
     conversion = 45
     total = 0
     while True:
-        print(color_menu + 'Menu de pedidos'.center(58,'*'))
+        print(color_menu + 'Menu de pedidos'.center(51,'*'))
         print(color_menu + 'Por Favor ingrese los datos de su pedido...........')
         print()
         print(color_menu + 'Que Articulo desea comprar?')
@@ -81,7 +83,7 @@ def menu_cliente(inv):
         while True:
             cod = int(input(color_op + 'Ingrese el codigo del articulo............: '))
             if validar(cod,inv) == False:
-                print(color_error + 'EL articulo no existe.................')
+                print(color_error + 'El articulo no existe.................')
             else:
                 break
         deco = input(color_op + 'Como desea que sea personalizado?............: ')
@@ -133,7 +135,7 @@ def menu_cliente(inv):
                 inventario_json = open('inventario.json','w')
                 json.dump(inventario,inventario_json)
                 inventario_json.close()
-            print(color_pass + 'Ticket de compra'.center(58,'*'))
+            print(color_pass + 'Ticket de compra'.center(51,'*'))
             for pedido in pedidos:
                 print(color_pass + f"{pedido['descripcion']:<20}",end="")
                 print(color_pass + f"{pedido['tam']:<10}",color_pass + f'{pedido['precio']}',end='')
@@ -150,8 +152,8 @@ def menu_cliente(inv):
 # -------------------------------------------------------
 def menu_principal():
     while True:
-        print(color_menu + 'Bienvenido'.center(58,'*'))
-        print(color_menu + 'Club de Fans'.center(58,'*'))
+        print(color_menu + 'Bienvenido'.center(51,'*'))
+        print(color_menu + 'Club de Fans'.center(51,'*'))
         print(color_menu + '[A] Administrador')
         print(color_menu + '[C] Cliente')
         print(color_menu + '[S] Salir')
@@ -162,6 +164,7 @@ def menu_principal():
             case 'c' | 'C':
                 menu_cliente(inventario)
             case 'S' | 's':
+                separar(color_menu)
                 print(color_pass + 'Saliendo del Sistema.........')
                 print(color_pass + 'Que tenga Feliz Dia..........')
                 break

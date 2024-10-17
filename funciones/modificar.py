@@ -3,17 +3,22 @@ from funciones.validar import validar
 from funciones.separar import separar
 def modificar(inv,color_m,color_o,color_e,color_p):
     while True:
-        cod = int(input(color_o + 'Ingrese el codigo del articulo....................: '))
-        if validar(cod,inv) == False:
-            print(color_e + 'El articulo no existe................................')
-        else:
-            break
+        try:
+            cod = input(color_o + 'Ingrese el codigo del articulo...............: ')
+            cod = int(cod)
+            if validar(cod,inv) == False:
+                print(color_e + 'El articulo no existe................................')
+            else:
+                break
+        except Exception as e:
+            print(color_e + 'Codigo incorrecto...........................')
+        separar(color_m)
     for indice, articulo in enumerate(inv):
         if cod == articulo['codigo']:
-            print(color_p + f"Descripcion...........................: {articulo['descripcion']:<20} |")
-            print(color_p + f"Tamaño................................: {articulo['tam']:<10}\t|")
-            print(color_p + f"Cantidad..............................: {articulo['cant']:>10.0f}\t |")
-            print(color_p + f"Precio................................: {articulo['precio']:>10.2f}\t |")
+            print(color_p + f"Descripcion...........................: {articulo['descripcion']:<10}|")
+            print(color_p + f"Tamaño................................: {articulo['tam']:<10}|")
+            print(color_p + f"Cantidad..............................: {articulo['cant']:>10.0f}|")
+            print(color_p + f"Precio................................: {articulo['precio']:>10.2f}|")
             separar(color_m)
 
             descripcion_vieja=articulo['descripcion']
