@@ -81,11 +81,15 @@ def menu_cliente(inv):
             print(color_menu + f"{articulo['codigo']} -",end="")
             print(color_menu + f'{articulo['descripcion']}')
         while True:
-            cod = int(input(color_op + 'Ingrese el codigo del articulo............: '))
-            if validar(cod,inv) == False:
-                print(color_error + 'El articulo no existe.................')
-            else:
-                break
+            try:
+                cod = input(color_op + 'Ingrese el codigo del articulo............: ')
+                cod = int(cod)
+                if validar(cod,inv) == False:
+                    print(color_error + 'El articulo no existe.................')
+                else:
+                    break
+            except Exception as e:
+                print(color_error + 'Codigo del articulo incorrecto...............')
         deco = input(color_op + 'Como desea que sea personalizado?............: ')
         cant = int(input(color_op +'Cuantos deseas comprar?...................: '))
 
