@@ -106,56 +106,110 @@ def menu_cliente(inv):
                 precio = articulo['precio']
                 total_artitulo = precio* cant
                 break
-
-        pedido = {
-            'codigo':cod,
-            'descripcion': descripcion,
-            'tam': tam,
-            'deco': deco,
-            'cant': cant,
-            'precio': precio,
-            'total': total_artitulo
-        }
-        pedidos.append(pedido)
-        pedidos_json = open('pedidos.json','w')
-        json.dump(pedidos,pedidos_json)
-        pedidos_json.close()
-        continuar = input(color_op + 'Desea Agregar algo mas a su pedido?(S/N)..........: ').capitalize()
-        if continuar == 'N':
-            for pedido in pedidos:
-                codigo_pedido = pedido['codigo']
-                cant_pedido = pedido['cant'] 
-                for indice, articulo in enumerate(inventario):
-                    if articulo['codigo'] == codigo_pedido:
-                        codigo= articulo['codigo']
-                        descripcion = articulo['descripcion']
-                        tam = articulo['tam']
-                        precio = articulo['precio']
-                        cant_actual = articulo['cant']
-                        del inventario[indice]
-                cant_restante = cant_actual - cant_pedido
-                articulo={
-                    'codigo': codigo,
+        if articulo['cant']>= cant:
+            pedido = {
+                'codigo':cod,
+                'descripcion': descripcion,
+                'tam': tam,
+                'deco': deco,
+                'cant': cant,
+                'precio': precio,
+                'total': total_artitulo
+            }
+            pedidos.append(pedido)
+            pedidos_json = open('pedidos.json','w')
+            json.dump(pedidos,pedidos_json)
+            pedidos_json.close()
+            continuar = input(color_op + 'Desea Agregar algo mas a su pedido?(S/N)..........: ').capitalize()
+            if continuar == 'N':
+                for pedido in pedidos:
+                    codigo_pedido = pedido['codigo']
+                    cant_pedido = pedido['cant'] 
+                    for indice, articulo in enumerate(inventario):
+                        if articulo['codigo'] == codigo_pedido:
+                            descripcion = articulo['descripcion']
+                            tam = articulo['tam']
+                            precio = articulo['precio']
+                            cant_actual = articulo['cant']
+                            cant_restante = cant_actual - cant_pedido
+                            del inventario[indice]
+                            articulo={
+                                'codigo': codigo_pedido,
+                                'descripcion': descripcion,
+                                'tam': tam,
+                                'cant': cant_restante,
+                                'precio': precio 
+                            }
+                            inventario.append(articulo)
+                            inventario_json = open('inventario.json','w')
+                            json.dump(inventario,inventario_json)
+                            inventario_json.close()
+                            print(color_pass + 'Ticket de compra'.center(51,'*'))
+                for pedido in pedidos:
+                    print(color_pass + f"{pedido['descripcion']:<20}",end="")
+                    print(color_pass + f"{pedido['tam']:<10}",color_pass + f'{pedido['precio']}',end='')
+                    print(color_pass + 'x', color_pass + f'{pedido['cant']:<5.0f}',end='')
+                    print(color_pass + f"{pedido['total']:>15.2f}")
+                    total += pedido['total']
+                print(color_op + 'Monto a pagar($)........................', color_pass + f'{total:.2f}')
+                print(color_op + 'Monto a pagar (Bs.).....................', color_pass + f'{total*conversion:.2f}')
+                pedidos.clear()
+                break
+        else:
+            cant_actual = articulo['cant']   
+            print(color_op + 'La cantidad existente no es suficiente para su pedido, nos queda actualmente')
+            print(color_op + f'{cant_actual}')
+            op_pedido = input(color_op + 'Desea esa cantidad en su pedido?(S/N): ').capitalize()
+            if op_pedido =='S':
+                pedido = {
+                    'codigo':articulo['codigo'],
                     'descripcion': descripcion,
                     'tam': tam,
-                    'cant': cant_restante,
-                    'precio': precio 
+                    'deco': deco,
+                    'cant': cant_actual,
+                    'precio': precio,
+                    'total': total_artitulo
                 }
-                inventario.append(articulo)
-                inventario_json = open('inventario.json','w')
-                json.dump(inventario,inventario_json)
-                inventario_json.close()
-            print(color_pass + 'Ticket de compra'.center(51,'*'))
-            for pedido in pedidos:
-                print(color_pass + f"{pedido['descripcion']:<20}",end="")
-                print(color_pass + f"{pedido['tam']:<10}",color_pass + f'{pedido['precio']}',end='')
-                print(color_pass + 'x', color_pass + f'{pedido['cant']:<5.0f}',end='')
-                print(color_pass + f"{pedido['total']:>15.2f}")
-                total += pedido['total']
-            print(color_op + 'Monto a pagar($)........................', color_pass + f'{total:.2f}')
-            print(color_op + 'Monto a pagar (Bs.).....................', color_pass + f'{total*conversion:.2f}')
-            pedidos.clear()
-            break
+            pedidos.append(pedido)
+            pedidos_json = open('pedidos.json','w')
+            json.dump(pedidos,pedidos_json)
+            pedidos_json.close()
+            continuar = input(color_op + 'Desea Agregar algo mas a su pedido?(S/N)..........: ').capitalize()
+            if continuar == 'N':
+                for pedido in pedidos:
+                    codigo_pedido = pedido['codigo']
+                    cant_pedido = pedido['cant'] 
+                    for indice, articulo in enumerate(inventario):
+                        if articulo['codigo'] == codigo_pedido:
+                            codigo= articulo['codigo']
+                            descripcion = articulo['descripcion']
+                            tam = articulo['tam']
+                            precio = articulo['precio']
+                            cant_actual = articulo['cant']
+                            cant_restante = cant_actual - cant_pedido
+                            del inventario[indice]
+                            articulo={
+                                'codigo': codigo,
+                                'descripcion': descripcion,
+                                'tam': tam,
+                                'cant': cant_restante,
+                                'precio': precio 
+                            }
+                            inventario.append(articulo)
+                            inventario_json = open('inventario.json','w')
+                            json.dump(inventario,inventario_json)
+                            inventario_json.close()   
+                print(color_pass + 'Ticket de compra'.center(51,'*'))
+                for pedido in pedidos:
+                    print(color_pass + f"{pedido['descripcion']:<20}",end="")
+                    print(color_pass + f"{pedido['tam']:<10}",color_pass + f'{pedido['precio']}',end='')
+                    print(color_pass + 'x', color_pass + f'{pedido['cant']:<5.0f}',end='')
+                    print(color_pass + f"{pedido['total']:>15.2f}")
+                    total += pedido['total']
+                print(color_op + 'Monto a pagar($)........................', color_pass + f'{total:.2f}')
+                print(color_op + 'Monto a pagar (Bs.).....................', color_pass + f'{total*conversion:.2f}')
+                pedidos.clear()
+                break
 
 # -------------------------------------------------------
 # Menu Principal
