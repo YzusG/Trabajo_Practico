@@ -4,15 +4,14 @@ from funciones.separar import separar
 def modificar(inv,color_m,color_o,color_e,color_p):
     while True:
         try:
-            cod = input(color_o + 'Ingrese el codigo del articulo...............: ')
-            cod = int(cod)
+            cod = int(input(color_o + 'Ingrese el codigo del articulo...............: '))
             if validar(cod,inv) == False:
                 print(color_e + 'El articulo no existe................................')
+                separar(color_m)
             else:
                 break
-        except Exception as e:
+        except ValueError:
             print(color_e + 'Codigo incorrecto...........................')
-        separar(color_m)
     for indice, articulo in enumerate(inv):
         if cod == articulo['codigo']:
             print(color_p + f"Descripcion...........................: {articulo['descripcion']:<10}|")
@@ -20,7 +19,6 @@ def modificar(inv,color_m,color_o,color_e,color_p):
             print(color_p + f"Cantidad..............................: {articulo['cant']:>10.0f}|")
             print(color_p + f"Precio................................: {articulo['precio']:>10.2f}|")
             separar(color_m)
-
             descripcion_vieja=articulo['descripcion']
             tamaño_viejo=articulo['tam']
             cantidad_vieja=articulo['cant']
